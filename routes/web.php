@@ -307,7 +307,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/', [MessagesController::class, 'index']);
+	Route::get('/connects', [MessagesController::class, 'index']);
 	Route::post('/idInfo', [MessagesController::class, 'idFetchData']);
     Route::post('/sendMessage', [MessagesController::class, 'send'])->name('send.message');
     Route::post('/fetchMessages', [MessagesController::class, 'fetch'])->name('fetch.messages');
