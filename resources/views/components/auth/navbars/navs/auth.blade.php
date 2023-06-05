@@ -49,19 +49,13 @@
             </div>
             <ul class="navbar-nav  align-items-center">
             <li class="nav-item">
-                    <a href="{{ route('illustration-sign-in') }}" class="nav-link text-body p-0 position-relative"
-                        target="_blank">
-                        <i class="material-icons me-sm-1">
-                            account_circle
-                        </i>
-                    </a>
-                </li>
+                <a href="{{ route('connects') }}" class="nav-link text-body p-0 position-relative" target="_blank">
+                    <i class="material-icons me-sm-1">chat</i>
+                </a>
+            </li>
                 <li class="nav-item">
-                    <a href="{{ route('illustration-sign-in') }}" class="nav-link text-body p-0 position-relative"
-                        target="_blank">
-                        <i class="material-icons me-sm-1">
-                            account_circle
-                        </i>
+                    <a href="{{ route('illustration-sign-in') }}" class="nav-link text-body ms-sm-2 ms-lg-3" target="_blank">
+                        <i class="material-icons me-sm-1">account_circle</i>
                     </a>
                 </li>
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
