@@ -155,6 +155,13 @@
                                 <span class="sidenav-normal  ms-2  ps-1"> Item Management <b class="caret"></b></span>
                             </a>
                         </li>
+                        <li class="nav-item {{ $activeItem == 'content-management' ? ' active ' : '' }}">
+                            <a class="nav-link text-white {{ $activeItem == 'content-management' ? ' active ' : '' }}  "
+                                href="{{ route('contents') }}">
+                                <span class="sidenav-mini-icon"> CM </span>
+                                <span class="sidenav-normal  ms-2  ps-1"> Content Management <b class="caret"></b></span>
+                            </a>
+                        </li>
                         @else
                         <li class="nav-item {{ $activeItem == 'item-management' ? ' active ' : '' }}">
                             <a class="nav-link text-white {{ $activeItem == 'item-management' ? ' active ' : '' }}  "

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContentManagementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\RegisterController;
@@ -90,6 +91,8 @@ Route::post('add-new-user', [UserManagementController::class, 'store'])->middlew
 Route::get('edit-user/{id}',[UserManagementController::class, 'edit'])->middleware('auth')->name('edit.user');
 Route::post('edit-user/{id}',[UserManagementController::class, 'update'])->middleware('auth');
 Route::post('users-management/{id}',[UserManagementController::class, 'destroy'])->middleware('auth')->name('delete.user');
+
+Route::get('contents', [ContentManagementController::class, 'index'])->middleware('auth')->name('contents');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('charts', function () {
@@ -305,7 +308,6 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('wizard');
 });
 
-
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/connects', [MessagesController::class, 'index'])->name('connects');
 	Route::post('/idInfo', [MessagesController::class, 'idFetchData']);
@@ -324,5 +326,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/deleteMessage', [MessagesController::class, 'deleteMessage'])->name('message.delete');
     Route::post('/setActiveStatus', [MessagesController::class, 'setActiveStatus'])->name('activeStatus.set');
     Route::get('/group/{id}', [MessagesController::class, 'index'])->name('group');
-    Route::get('/{id}', [MessagesController::class, 'index'])->name('user');
 });
