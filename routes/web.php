@@ -93,6 +93,9 @@ Route::post('edit-user/{id}',[UserManagementController::class, 'update'])->middl
 Route::post('users-management/{id}',[UserManagementController::class, 'destroy'])->middleware('auth')->name('delete.user');
 
 Route::get('contents', [ContentManagementController::class, 'index'])->middleware('auth')->name('contents');
+Route::get('/content/create', [ContentManagementController::class, 'create'])->middleware('auth')->name('content.create');
+Route::post('/content/store', [ContentManagementController::class, 'store'])->middleware('auth')->name('content.store');
+Route::get('/grapesjs-data', [ContentManagementController::class, 'showGrapesjsData'])->middleware('auth')->name('grapesjs-data');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('charts', function () {

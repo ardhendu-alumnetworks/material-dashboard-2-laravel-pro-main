@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ad5e0069e0cdf5ff5087578f429ae4",
+    "content-hash": "2c1d9e6bfe41293950673a614d4b35e2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1996,6 +1996,55 @@
             "time": "2023-02-06T13:44:46+00:00"
         },
         {
+            "name": "msa/laravel-grapes",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/allamo123/laravel-grapes.git",
+                "reference": "179f27c70ed851277fd765378bfdb67114f71b68"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/allamo123/laravel-grapes/zipball/179f27c70ed851277fd765378bfdb67114f71b68",
+                "reference": "179f27c70ed851277fd765378bfdb67114f71b68",
+                "shasum": ""
+            },
+            "require": {
+                "simplehtmldom/simplehtmldom": "*",
+                "tightenco/ziggy": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MSA\\LaravelGrapes\\LaravelGrapesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MSA\\LaravelGrapes\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mohamed allam",
+                    "email": "55511778+allamo123@users.noreply.github.com",
+                    "role": "Fullstack Developer"
+                }
+            ],
+            "description": "laravel grapes is a cms drag and drop page builder",
+            "support": {
+                "issues": "https://github.com/allamo123/laravel-grapes/issues",
+                "source": "https://github.com/allamo123/laravel-grapes/tree/v1.0.1"
+            },
+            "time": "2023-01-02T17:56:59+00:00"
+        },
+        {
             "name": "munafio/chatify",
             "version": "v1.6.1",
             "source": {
@@ -3386,6 +3435,81 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "simplehtmldom/simplehtmldom",
+            "version": "2.0-RC2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplehtmldom/simplehtmldom.git",
+                "reference": "3c87726400e59d8e1bc4709cfe82353abeb0f4d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplehtmldom/simplehtmldom/zipball/3c87726400e59d8e1bc4709cfe82353abeb0f4d1",
+                "reference": "3c87726400e59d8e1bc4709cfe82353abeb0f4d1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-iconv": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6 || ^7"
+            },
+            "suggest": {
+                "ext-curl": "Needed to support cURL downloads in class HtmlWeb",
+                "ext-mbstring": "Allows better decoding for multi-byte documents",
+                "ext-openssl": "Allows loading HTTPS pages when using cURL"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "./"
+                ],
+                "exclude-from-classmap": [
+                    "/example/",
+                    "/manual/",
+                    "/testcase/",
+                    "/tests/",
+                    "simple_html_dom.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "S.C. Chen",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Schlick",
+                    "role": "Developer"
+                },
+                {
+                    "name": "logmanoriginal",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fast, simple and reliable HTML document parser for PHP.",
+            "homepage": "https://simplehtmldom.sourceforge.io/",
+            "keywords": [
+                "Simple",
+                "dom",
+                "html",
+                "parser",
+                "php",
+                "simplehtmldom"
+            ],
+            "support": {
+                "issues": "https://sourceforge.net/p/simplehtmldom/bugs/",
+                "rss": "https://sourceforge.net/p/simplehtmldom/news/feed.rss",
+                "source": "https://sourceforge.net/p/simplehtmldom/repository/",
+                "wiki": "https://simplehtmldom.sourceforge.io/docs/"
+            },
+            "time": "2019-11-09T15:42:50+00:00"
         },
         {
             "name": "symfony/console",
@@ -5629,6 +5753,73 @@
                 }
             ],
             "time": "2023-05-25T13:09:35+00:00"
+        },
+        {
+            "name": "tightenco/ziggy",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tighten/ziggy.git",
+                "reference": "3beb080be60b1eadad043f3773a160df13fa215f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tighten/ziggy/zipball/3beb080be60b1eadad043f3773a160df13fa215f",
+                "reference": "3beb080be60b1eadad043f3773a160df13fa215f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": ">=5.4@dev"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.0 || ^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0",
+                "phpunit/phpunit": "^6.0 || ^7.0 || ^8.0 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tightenco\\Ziggy\\ZiggyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tightenco\\Ziggy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Coulbourne",
+                    "email": "daniel@tighten.co"
+                },
+                {
+                    "name": "Jake Bathman",
+                    "email": "jake@tighten.co"
+                },
+                {
+                    "name": "Jacob Baker-Kretzmar",
+                    "email": "jacob@tighten.co"
+                }
+            ],
+            "description": "Generates a Blade directive exporting all of your named Laravel routes. Also provides a nice route() helper function in JavaScript.",
+            "homepage": "https://github.com/tighten/ziggy",
+            "keywords": [
+                "Ziggy",
+                "javascript",
+                "laravel",
+                "routes"
+            ],
+            "support": {
+                "issues": "https://github.com/tighten/ziggy/issues",
+                "source": "https://github.com/tighten/ziggy/tree/v1.6.0"
+            },
+            "time": "2023-05-12T20:08:56+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -8080,16 +8271,16 @@
         },
         {
             "name": "spatie/ignition",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "ad13a6792992411e05d3d3b293e26bdf9f9a7321"
+                "reference": "d8eb8ea1ed27f48a694405cff363746ffd37f13e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/ad13a6792992411e05d3d3b293e26bdf9f9a7321",
-                "reference": "ad13a6792992411e05d3d3b293e26bdf9f9a7321",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/d8eb8ea1ed27f48a694405cff363746ffd37f13e",
+                "reference": "d8eb8ea1ed27f48a694405cff363746ffd37f13e",
                 "shasum": ""
             },
             "require": {
@@ -8159,7 +8350,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-05-25T10:19:32+00:00"
+            "time": "2023-06-06T14:14:58+00:00"
         },
         {
             "name": "spatie/laravel-ignition",

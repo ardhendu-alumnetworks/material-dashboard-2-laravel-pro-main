@@ -1,73 +1,156 @@
-<x-page-template bodyClass='g-sidenav-show  bg-gray-200'>
-    <x-auth.navbars.sidebar activePage="laravel-examples" activeItem="content-management" activeSubitem="">
-    </x-auth.navbars.sidebar>
+<x-page-template bodyClass='g-sidenav-show bg-gray-200'>
+    <link rel="stylesheet" href="//unpkg.com/grapesjs/dist/css/grapes.min.css">
+    <x-auth.navbars.sidebar activePage="laravel-examples" activeItem="content-management" activeSubitem=""></x-auth.navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        <x-auth.navbars.navs.auth pageTitle="Content Management"></x-auth.navbars.navs.auth>
+        <x-auth.navbars.navs.auth pageTitle="Content Management">
+            <!-- Add the "Open Blocks" icon inside the navbar -->
+            <x-slot name="navbarIcons">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="#" title="Open Blocks" onclick="editor.runCommand('open-blocks')">
+                        <i class="fa fa-th-large"></i>
+                    </a>
+                </div>
+            </x-slot>
+        </x-auth.navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div id="grapesjs-container"></div>
+                </div>
+                <div class="col-lg-3">
+                    <div id="blocks-container"></div>
+                </div>
+            </div>
             <div class="row mt-4">
                 <div class="col-12">
                     <div class="card">
                         <!-- Card header -->
-                        <div class="card-header">
+                        <!-- <div class="card-header">
                             <h5 class="mb-0">Content</h5>
-                        </div>
+                        </div> -->
                         <div class="card-body">
-        <form method="POST" action="{{ route('contents') }}">
-            @csrf
-
-            <div class="form-group">
-                <label for="content">Content</label>
-                <textarea name="content" id="content" class="form-control tinymce-editor" required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Save</button>
-        </form>
-    </div>
+                        <form id="save-form" action="{{ route('content.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="grapesjsData" id="grapesjsDataInput">
+                            <input type="hidden" name="grapesjsCss" id="grapesjsCssInput">
+                            <input type="hidden" name="grapesjsJs" id="grapesjsJsInput">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>           
+        </div>
     </main>
-    <script src="https://cdn.tiny.cloud/1/9379lda8937aqo6bgnrlufp3e3h871q3w6tylicr9lv8pcmy/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    </textarea>
-    <script>
-            tinymce.init({
-                selector: 'textarea.tinymce-editor',
-                plugins: 'advlist autolink lists link image paste',
-                toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                paste_data_images: true,
-                paste_as_text: false,
-                paste_preprocess: function(plugin, args) {
-                    var clipboardData = args.clipboardData;
-                    if (clipboardData && clipboardData.items && clipboardData.items.length) {
-                        var images = [];
-                        for (var i = 0; i < clipboardData.items.length; i++) {
-                            var item = clipboardData.items[i];
-                            if (item.type.indexOf('image') !== -1) {
-                                var file = item.getAsFile();
-                                images.push(file);
-                            }
-                        }
-                        if (images.length > 0) {
-                            args.preventDefault();
-                            uploadImages(images);
-                        }
-                    }
-                }
-            });
 
-            function uploadImages(images) {
-                for (var i = 0; i < images.length; i++) {
-                    var image = images[i];
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        var imgHtml = '<img src="' + e.target.result + '" style="display: block; margin: 0 auto; text-align: center;">';
-                        tinymce.activeEditor.insertContent(imgHtml);
-                    };
-                    reader.readAsDataURL(image);
-                }
-            }
-        </script>   
+    <!-- Additional Scripts -->
+    <script src="//unpkg.com/grapesjs"></script>
+    <script src="//unpkg.com/grapesjs-blocks-basic"></script>
+    <script src="//unpkg.com/grapesjs-preset-webpage"></script>
+    <script src="//unpkg.com/grapesjs-preset-newsletter"></script>
+    <script src="//unpkg.com/grapesjs-preset-email"></script>
+
+    <!-- Additional Stylesheets -->
+    <link rel="stylesheet" href="//unpkg.com/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css">
+    <link rel="stylesheet" href="//unpkg.com/grapesjs-preset-newsletter/dist/grapesjs-preset-newsletter.min.css">
+    <link rel="stylesheet" href="//unpkg.com/grapesjs-preset-email/dist/grapesjs-preset-email.min.css">
+
+    <style>
+        #grapesjs-container {
+            height: calc(100vh - 100px);
+        }
+        #blocks-container {
+            height: calc(100vh - 100px);
+            border-left: 1px solid #ddd;
+            padding: 15px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editor = grapesjs.init({
+                container: '#grapesjs-container',
+                storageManager: {
+                    type: 'local',
+                    autoload: true,
+                    autosave: true,
+                    stepsBeforeSave: 1
+                },
+                plugins: ['gjs-blocks-basic', 'grapesjs-preset-webpage', 'grapesjs-preset-newsletter', 'grapesjs-preset-email'],
+                blockManager: {
+                    appendTo: '#blocks-container',
+                },
+                panels: {
+                    defaults: [
+                        {
+                            id: 'panel-switcher',
+                            el: '.panel__switcher',
+                            buttons: [
+                                {
+                                    id: 'show-style',
+                                    active: true,
+                                    label: 'Styles',
+                                    command: 'show-styles',
+                                    className: 'fa fa-cog',
+                                },
+                                {
+                                    id: 'show-layers',
+                                    active: true,
+                                    label: 'Layers',
+                                    command: 'show-layers',
+                                    className: 'fa fa-bars',
+                                },
+                                {
+                                    id: 'show-traits',
+                                    active: true,
+                                    label: 'Traits',
+                                    command: 'show-traits',
+                                    className: 'fa fa-cog',
+                                },
+                            ],
+                        },
+                    ],
+                },
+                canvas: {
+                    styles: [
+                        'https://unpkg.com/grapesjs/dist/css/grapes.min.css',
+                        'https://unpkg.com/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css',
+                        'https://unpkg.com/grapesjs-preset-newsletter/dist/grapesjs-preset-newsletter.min.css',
+                        'https://unpkg.com/grapesjs-preset-email/dist/grapesjs-preset-email.min.css',
+                    ],
+                },
+                assetManager: {
+                    assets: [
+                        {
+                            type: 'image',
+                            src: 'https://via.placeholder.com/350x250',
+                            height: 350,
+                            width: 250,
+                        },
+                    ],
+                },
+                storageManager: {
+                    id: 'gjs-', // Prefix identifier that will be used for storing data in the local storage
+                    autosave: true, // Store data automatically
+                    autoload: true, // Autoload stored data on init
+                    stepsBeforeSave: 1, // Steps before saving the whole data
+                },
+            });
+            
+            // Save the GrapesJS data, CSS, and JS on form submission
+            const saveForm = document.getElementById('save-form');
+            saveForm.addEventListener('submit', function() {
+                const grapesjsData = editor.getHtml();
+                const grapesjsCss = editor.getCss();
+                const grapesjsJs = editor.getJs();
+
+                document.getElementById('grapesjsDataInput').value = JSON.stringify(grapesjsData);
+                document.getElementById('grapesjsCssInput').value = grapesjsCss;
+                document.getElementById('grapesjsJsInput').value = grapesjsJs;
+            });
+        });
+    </script>
 </x-page-template>
+        
